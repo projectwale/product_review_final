@@ -1,0 +1,477 @@
+{% extends 'base.html' %} {% block container %}
+
+<script src="{{ url_for('static',filename='css/com.css') }}"></script>
+<!-- Vue JS -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+<!-- jQuery -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<style>
+    .be-comment-block {
+    margin-bottom: 50px !important;
+    border: 1px solid #edeff2;
+    border-radius: 2px;
+    padding: 50px 70px;
+    border:1px solid #ffffff;
+}
+
+.comments-title {
+    font-size: 16px;
+    color: #262626;
+    margin-bottom: 15px;
+    font-family: 'Conv_helveticaneuecyr-bold';
+}
+
+.be-img-comment {
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-bottom: 15px;
+}
+
+.be-ava-comment {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.be-comment-content {
+    margin-left: 80px;
+}
+
+.be-comment-content span {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 15px;
+}
+
+.be-comment-name {
+    font-size: 13px;
+    font-family: 'Conv_helveticaneuecyr-bold';
+}
+
+.be-comment-content a {
+    color: #383b43;
+}
+
+.be-comment-content span {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 15px;
+}
+
+.be-comment-time {
+    text-align: right;
+}
+
+.be-comment-time {
+    font-size: 11px;
+    color: #b4b7c1;
+}
+
+.be-comment-text {
+    font-size: 13px;
+    line-height: 18px;
+    color: #7a8192;
+    display: block;
+    background: #f6f6f7;
+    border: 1px solid #edeff2;
+    padding: 15px 20px 20px 20px;
+}
+
+.form-group.fl_icon .icon {
+    position: absolute;
+    top: 1px;
+    left: 16px;
+    width: 48px;
+    height: 48px;
+    background: #f6f6f7;
+    color: #b5b8c2;
+    text-align: center;
+    line-height: 50px;
+    -webkit-border-top-left-radius: 2px;
+    -webkit-border-bottom-left-radius: 2px;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-bottomleft: 2px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.form-group .form-input {
+    font-size: 13px;
+    line-height: 50px;
+    font-weight: 400;
+    color: #b4b7c1;
+    width: 100%;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #edeff2;
+    border-radius: 3px;
+}
+
+.form-group.fl_icon .form-input {
+    padding-left: 70px;
+}
+
+.form-group textarea.form-input {
+    height: 150px;
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6" style="padding-right:150px">
+            <img src="{{url_for('static', filename='uploads/'+data[4]) }}" height="350px" width="350px"
+                class="img-thumbnail" id="productImage" />
+        </div>
+        <div class="col-md-6">
+            <h1 class="text-center" style="color: orangered"> {{ data[1] }}</h1>
+            <div class="price">
+                <h2>COST: Rs.{{ data[2] }}/-</h2>
+                <h2>
+                    <strong>Product Details</strong>
+                </h2>
+                <p style="justify-content: left;">{{ data[3] }}
+                </p>
+                <a class="btn btn-primary" href="/addToCart?productId={{request.args.get('productId') }}">Add to Cart
+                    &NonBreakingSpace;<i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
+
+                </button>
+                <h2>Product Specs</h2>
+                <table class="table">
+                    <thead>
+                        <th>Free Delivery</th>
+                        <th>Installation</th>
+                        <th>Guarentee</th>
+                        <th>Additional Gifts</th>
+                    </thead>
+                    <tr>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <h2>
+            <strong>Additional Details</strong>
+        </h2>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[0]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[0]}}">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[1]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[1]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[2]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[2]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[3]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[3]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[4]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[4]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[5]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[5]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[6]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[6]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[7]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[7]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[8]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[8]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[9]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[9]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[10]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[10]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[11]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[11]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[12]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[12]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[13]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[13]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{colm[14]}}">
+            </div>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" id="formGroupExampleInput" value="{{dt[14]}}"
+                    aria-readonly="true">
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!-- Comment section start -->
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+        <div class="be-comment-block">
+            <h1 class="comments-title">Comments (3)</h1>
+            <div class="be-comment">
+                <!-- <div class="rounded-circle border be-img-comment"
+                    style="width:100px;height:50px" alt="Avatar">
+                    <i class="fas fa-user-alt fa-3x text-info be-ava-comment"></i>
+                </div> -->
+
+                <div class="be-img-comment">
+                    <a href="blog-detail-2.html">
+                        <i class="fas fa-user-alt fa-3x text-info be-ava-comment"></i>
+                    </a>
+                </div>
+                <div class="be-comment-content">
+
+                    <span class="be-comment-name">
+                        <a href="blog-detail-2.html">Ravi Sah</a>
+                    </span>
+                    <span class="be-comment-time">
+                        <i class="fa fa-clock-o"></i>
+                        May 27, 2015 at 3:14am
+                    </span>
+
+                    <p class="be-comment-text">
+                        Pellentesque gravida tristique ultrices.
+                        Sed blandit varius mauris, vel volutpat urna hendrerit id.
+                        Curabitur rutrum dolor gravida turpis tristique efficitur.
+                    </p>
+                </div>
+            </div>
+            <div class="be-comment">
+                <div class="be-img-comment">
+                    <a href="blog-detail-2.html">
+                        <i class="fas fa-user-alt fa-3x text-info be-ava-comment"></i>
+                    </a>
+                </div>
+                <div class="be-comment-content">
+                    <span class="be-comment-name">
+                        <a href="blog-detail-2.html">Phoenix, the Creative Studio</a>
+                    </span>
+                    <span class="be-comment-time">
+                        <i class="fa fa-clock-o"></i>
+                        May 27, 2015 at 3:14am
+                    </span>
+                    <p class="be-comment-text">
+                        Nunc ornare sed dolor sed mattis. In scelerisque dui a arcu mattis, at maximus eros commodo.
+                        Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant.
+                        Proin ut ornare lectus, vel eleifend est. Fusce hendrerit dui in turpis tristique blandit.
+                    </p>
+                </div>
+            </div>
+            <div class="be-comment">
+                <div class="be-img-comment">
+                    <a href="blog-detail-2.html">
+                        <i class="fas fa-user-alt fa-3x text-info be-ava-comment"></i>
+                    </a>
+                </div>
+                <div class="be-comment-content">
+                    <span class="be-comment-name">
+                        <a href="blog-detail-2.html">Cüneyt ŞEN</a>
+                    </span>
+                    <span class="be-comment-time">
+                        <i class="fa fa-clock-o"></i>
+                        May 27, 2015 at 3:14am
+                    </span>
+                    <p class="be-comment-text">
+                        Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant
+                    </p>
+                </div>
+            </div>
+            <form action="/review" method="POST" class="form-block">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <textarea class="form-input" required="" name="addComment" placeholder="Your text"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <h2>
+
+        <!-- Comment Section End -->
+        <div class="row">
+            <div class="container">
+                <div class="col-md-4">
+                    <img src="{{ url_for('static', filename ='img/camera/2.jpg') }}" class="img-responsive"
+                        width="100%">
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ url_for('static', filename ='img/camera/3.jpg') }}" class="img-responsive"
+                        width="100%">
+                </div>
+                <div class="col-md-4 ">
+                    <img src="{{ url_for('static', filename ='img/camera/1.jpg') }}" class="img-responsive" width="50%">
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="{{ url_for('static', filename ='img/slider/14.png') }}" alt="Los Angeles"
+                            style="width:100%;">
+                    </div>
+                    <div class="item">
+                        <img src="{{ url_for('static', filename ='img/slider/16.jpg') }}" alt="Chicago"
+                            style="width:100%; height:inherit">
+                    </div>
+                    <div class="item">
+                        <img src="{{ url_for('static', filename ='img/slider/11.png') }}" alt="New york"
+                            style="width:100%;">
+                    </div>
+                </div>
+                <a class="left carousel-control" style="opacity: 0;" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" style="opacity: 0;" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <br>
+        <br>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $(".primaryContained").on('click', function () {
+            $(".comment").addClass("commentClicked");
+        });//end click
+        $("textarea").on('keyup.enter', function () {
+            $(".comment").addClass("commentClicked");
+        });//end keyup
+    });//End Function
+
+    new Vue({
+        el: "#app",
+        data: {
+            title: 'Add a comment',
+            newItem: '',
+            item: [],
+        },
+        methods: {
+            addItem() {
+                this.item.push(this.newItem);
+                this.newItem = "";
+            }
+        }
+
+    });
+</script>
+{% endblock %}

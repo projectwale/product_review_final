@@ -1,0 +1,26 @@
+productId,name,price,description,image,stock,categoryId
+1,SONY,1150,EXTRA BASS,sonyear.png,45,4
+2,JBL,1550,super company with ow cost,jblear.jpg,515,4
+3,Samsung,500,perfect product for samsung users,samear.jpg,58,4
+4,HP printer,7500,high branded printer with gud outut,hpprint.jpg,123,5
+5,Godrej printers,11150,A long lasting quality of printouts,godrejprint.jpg,45,5
+6,HCL printers,12000,A wide range of colors which are used to give gud output results,HCLprint.jpg,146,5
+7,EPSON Printers,15000,3D printing with scanners,epsonprint.jpg,8463,5
+8,Panasonic 32,25000,An HD 32 Inch TV with gud sound quality,panosonictv.jpg,612,3
+9,Sony 3D,50000,3D Dimensional TV with,sonytv.jpg,586,3
+10,Onida 42 Inch,45000,An 42 inch hd tv with high quality,onidatv.jpeg,148,3
+11,BLP 22 Inch,22000,An basic model of TV,bpltv.jpg,357,3
+12,HCL Keyboards,650,A keyboard with band of HCL,hclkey.jpg,316,6
+13,MAC Keyboard,2550,A apple system with pple mac keyboard,mackey.jpg,354,6
+14,Keyboard Combo,4500,A set of three items,combo.jpg,468,6
+15,OTG,70,connects the mobile with pendrive,otg.jpg,159,6
+16,SONY LAPTOP,45000,A sony laptop with 4gb ram and 1 tb ram,laptopsony.png,4895,7
+17,SAMSUNG TAB,7050,An tab with medium sized display with samsung brand,samtab.jpg,128,7
+18,WATCH,750,watch with gud design and make,watch.png,167,7
+19,VR,3550,enjoy the good experience of the virtual reality,vr.jpg,1687,7
+20,DRONE,5000,USED TO TAKE A 360degree soots,123.png,6542,2
+21,Smart watch,1250,A red color watch,e.png,357,1
+22,Smart watch,1250,A green coloured watch,w.png,3579,1
+23,Smart watch,1150,An yellow color watcg,r.png,187,1
+24,Mi note Pro,7999,A good medium sized image for mi lovers,mi.png,59,2
+25,Mi note 5 pro,16999,a good pixel image of 16gb,sd.png,4563,2
